@@ -15,6 +15,7 @@
       "alzCloudEnvironments": [
         "AzureCloud",
         "AzureChinaCloud",
+        test
         "AzureUSGovernment"
       ]
     },
