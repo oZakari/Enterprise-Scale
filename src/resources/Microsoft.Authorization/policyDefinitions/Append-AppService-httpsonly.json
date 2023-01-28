@@ -24,7 +24,8 @@
         "defaultValue": "Append",
         "allowedValues": [
           "Append",
-          "Disabled"
+          "Disabled",
+          "test"
         ],
         "metadata": {
           "displayName": "Effect",
