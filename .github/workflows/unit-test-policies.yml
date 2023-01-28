@@ -4,7 +4,6 @@ name: Unit Test Policies
 # Start the job on push for all branches #
 ##########################################
 
-# yamllint disable-line rule:truthy
 on:
   pull_request_target:
     types:
@@ -17,8 +16,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  GITHUB_COMMIT_ID: ${{ github.event.pull_request.head.sha }}
-  GITHUB_PR_ID: ${{ github.event.pull_request.id }}
+  POLICY_DIR: "src/resources/Microsoft.Authorization/policyDefinitions/"
 
 jobs:
   validate-policy-file:
@@ -37,3 +35,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: true
+          fetch-depth: 0
+
+      - name: Get List of Changed Files
+        run: git diff HEAD^ $POLICY_DIR ${PATHS} -- HEAD $POLICY_DIR --name-only
