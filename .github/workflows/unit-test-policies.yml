@@ -37,3 +37,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: true
+
+      - name: Get List of Changed Files
+        run: git diff HEAD^ $POLICY_DIR ${PATHS} -- HEAD $POLICY_DIR --name-only
