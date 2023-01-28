@@ -1,0 +1,39 @@
+name: Unit Test Policies
+
+##########################################
+# Start the job on push for all branches #
+##########################################
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+    paths:
+      - "src/resources/Microsoft.Authorization/policyDefinitions/**.json"
+  workflow_dispatch: {}
+
+env:
+  GITHUB_COMMIT_ID: ${{ github.event.pull_request.head.sha }}
+  GITHUB_PR_ID: ${{ github.event.pull_request.id }}
+
+jobs:
+  validate-policy-file:
+    name: Validate Policy File
+    runs-on: ubuntu-latest
+    environment: csu-rw
+
+  validate-policy-deployment:
+    name: Validate-Policy-Deployment
+    runs-on: ubuntu-latest
+    environment: csu-rw
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
