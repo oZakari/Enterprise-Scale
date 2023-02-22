@@ -14,8 +14,7 @@
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
         "AzureCloud",
-        "AzureChinaCloud",
-        "AzureUSGovernment"
+        "AzureChinaCloud"
       ]
     },
     "parameters": {
