@@ -33,4 +33,5 @@ jobs:
         shell: pwsh
         working-directory: .github\actions-config
         run: |
+          ls
           Invoke-Pester Test-ModifiedPolicies.Tests.ps1 -PassThru
