@@ -2,6 +2,10 @@ Describe 'UnitTest-ModifiedPolicies' {
     BeforeAll {
         Import-Module -Name $PSScriptRoot\PolicyPesterTestHelper.psm1 -Force -Verbose
 
+        $ModifiedFiles = @()
+        $AddedFiles = @()
+        $ModifiedAddedFiles = @()
+
         $ModifiedFiles = Get-PolicyFiles -DiffFilter "M"
         if ($ModifiedFiles -ne $null)
         {
@@ -24,8 +28,6 @@ Describe 'UnitTest-ModifiedPolicies' {
 
         $ModifiedAddedFiles = $ModifiedFiles + $AddedFiles
     }
-
-
 
     Context "Validate policy metadata" {
 
